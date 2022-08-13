@@ -84,7 +84,7 @@ def generate_select_query(spec_ddl: dict) -> None:
 def generate_merge_query(spec_ddl: dict) -> None:
     filename = 'MergeQuery'+spec_ddl['table_name'].capitalize()+'.sql'
     filename = os.path.join('generatedFiles', filename)
-    sql = 'MERGE INTO ' + spec_ddl['table_name'] + ' TGT USING (\n'
+    sql = 'MERGE INTO ' + spec_ddl['table_name'] + ' TGT USING ( SELECT\n'
     for idx, field in enumerate(spec_ddl['fields_name']):
         if idx != len(spec_ddl['fields_name']) - 1:
             sql += '\t? as ' + field + ',\n'
